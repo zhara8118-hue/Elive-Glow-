@@ -96,8 +96,8 @@ export default function ReportsPage() {
       const doc = new jsPDF();
       const period = `${formatDate(dateFilter.from)} – ${formatDate(dateFilter.to)}`;
       const branch = branchFilter === 'all' ? 'All Branches' : '';
-              <p className="section-title">Sales Preview</p>
-              <p className="font-display font-bold text-brand-plum mt-0.5">Sales Summary</p>
+
+      doc.setFillColor(61, 31, 47);
       doc.rect(0, 0, 210, 40, 'F');
       doc.setTextColor(255, 255, 255);
       doc.setFontSize(22);
@@ -105,23 +105,9 @@ export default function ReportsPage() {
       doc.setFontSize(11);
       doc.text(REPORTS.find(r => r.key === selectedReport)?.label + ' Report', 14, 28);
       doc.setFontSize(9);
-          <div className="bg-brand-cream rounded-xl p-8 text-center">
-            <FileText size={48} className="mx-auto text-brand-plum/20 mb-3" />
-            <p className="font-display font-bold text-brand-plum/40">Report Preview</p>
-            <p className="text-sm text-brand-plum/30 mt-1">Below is a preview for the selected period/date.</p>
+      doc.text(`Period: ${period} · ${branch || 'Branch filtered'}`, 14, 36);
 
-            {selectedReport === 'sales' ? (
-              <div className="mt-6 text-left">
-                <p className="text-sm font-semibold mb-2">Sales for {formatDate(dateFilter.from)}</p>
-                <PreviewSales date={dateFilter.from} supabase={supabase} branchFilter={branchFilter} />
-              </div>
-            ) : (
-              <>
-                <p className="font-display font-bold text-brand-plum/40 mt-4">Click "Export PDF" or "Export CSV"</p>
-                <p className="text-sm text-brand-plum/30 mt-1">to generate and download the {REPORTS.find(r => r.key === selectedReport)?.label} report</p>
-              </>
-            )}
-          </div>
+      doc.setTextColor(0, 0, 0);
       if (selectedReport === 'sales') {
         const sales = await generateSalesReport();
         const total = sales.reduce((s: number, r: { amount: number }) => s + Number(r.amount), 0);
