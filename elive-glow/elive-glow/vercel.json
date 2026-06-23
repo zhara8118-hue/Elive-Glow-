@@ -5,8 +5,8 @@
   "installCommand": "npm install",
   "regions": ["fra1"],
   "env": {
-    "NEXT_PUBLIC_SUPABASE_URL": "@supabase_url",
-    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "@supabase_anon_key",
-    "SUPABASE_SERVICE_ROLE_KEY": "@supabase_service_role_key"
+    "NEXT_PUBLIC_SUPABASE_URL": "https://tuckseawirhrlvzohkyh.supabase.co",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "sb_publishable_MzFR2mhePaeNl0n9bFGcQQ_Dd0-nv0z",
+    "SUPABASE_SERVICE_ROLE_KEY": "sb_secret_liwXexWaWxEt2DJlgiHWiQ_4XS5pPlh"
   }
 }
